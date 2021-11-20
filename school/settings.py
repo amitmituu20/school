@@ -129,7 +129,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 STATIC_URL = '/static/'
 
-
 AUTH_USER_MODEL="administrator.CustomUser"
 AUTHENTICATION_BACKENDS=['administrator.EmailBackEnd.EmailBackEnd']
 MEDIA_URL='/media/'

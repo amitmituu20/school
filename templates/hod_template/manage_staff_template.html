@@ -1,0 +1,247 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Manage staff
+{% endblock page_title %}
+{% block main_content %}
+<div class="row">
+    <!-- SEMESTER LIST -->
+    <div class="col-md-9">
+        <table class="table border">
+            <thead class="thead-dark">
+                <tr>                    
+                    
+                     <th scope="col">Name</th>
+                      <th scope="col">Staff id.no</th>
+                      <th scope="col">Birth Date</th>
+                      <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for staff in staffs %}
+                    <tr>
+                      
+                      <td>{{ staff.admin.first_name }}</td>
+                      <td>{{ staff.admin.username }}</td>
+                      <td>{{ staff.sbdate }}</td>
+                      <td><a href="/edit_staff/{{ staff.admin.id }}" class="btn btn-success">Edit</a>
+                      <a href="/delete_staff/{{ staff.admin.id }}"  class="btn btn-tool"> <i class="fas fa-times"></i></a></td>
+                    </tr>
+                  {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="col-md-3">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="" data-toggle="modal" data-target="#exampleModal">Add staff</a>
+            </li>
+            <!-- Add Department Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"> Staff details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div> <!-- /modal header -->
+                        <div class="modal-body">
+                               <form role="form" action="/add_staff_save" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                <div class="card-body">
+                <div class="tab-content card-body"> <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link " href="#personal-info" data-toggle="tab">Personal Info</a></li>
+                <li class="nav-item"><a class="nav-link" href="#departmental-info" data-toggle="tab">Departmental Info</a></li>
+                <li class="nav-item"><a class="nav-link " href="#board-info" data-toggle="tab">Board Info</a></li> </ul>
+               <div class="tab-pane active" id="personal-info">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" placeholder="Full Name" name="first_name" required />
+                  </div>
+                    <div class="form-group">
+                    <label> Birth Date</label>
+                    <input type="date" class="form-control" name="sbdate" required >
+                  </div>
+                   <label>
+              Mobile Number
+            </label>
+            <div class="form-group">
+            <input type="number" class="form-control" name="mob" />
+            </div>
+                 <label>
+              Adhar Number
+            </label>
+            <div class="form-group">
+            <input type="number" class="form-control" name="adhar" />
+            </div>
+                   <label >
+              Gender
+            </label>
+            <div class="form-group">
+                 <select class="form-control" name="gd" id="gd">
+                <option value="00">Select gender</option>
+               <option value="Male">Male</option>
+                 <option value="Female">Female</option>
+                 <option value="Others">others</option>
+                 </select>
+            </div>
+               <label>Address</label>
+                   <div class="form-group">
+                       <textarea name="address" class="form-control"></textarea>
+                   </div>
+               </div>
+                    <div class="tab-pane" id="departmental-info">
+                         <label>
+              Email
+            </label>
+            <div class="form-group">
+            <input type="email" placeholder="email"  class="form-control" name="email" />
+                  <label>
+              Mother Tounge
+            </label>
+            <div class="form-group">
+              <select name="mt"  class="form-control" id="mt">
+                <option value="00">Select Mother Tounge</option>
+                <option selected value="Malayalam">Malayalam</option>
+                 <option value="Hindi">Hindi</option>
+                   <option value="Bengali">Bengali</option>
+                   <option value="Tamil">Tamil</option>
+                   <option value="Kannada">Kannada</option>
+                   <option value="Telugu">Telugu</option>
+                   <option value="Urdu">Urdu </option>
+
+                 </select>
+            </div>
+            </div>
+                         <label >
+              Blood Group
+            </label>
+            <div class="form-group">
+           <select name="bd"  class="form-control" id="bd">
+                <option value="00">Select State</option>
+                <option selected value="none">none</option>
+               <option value="O+">O+</option>
+                 <option value="O-">O-</option>
+                <option value="A+">A+</option>
+                 <option value="A-">A-</option>
+             <option value="B+">B+</option>
+               <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                 <option value="AB-">AB-</option>
+           </select>
+            </div>
+              <label>
+               Marital status
+            </label>
+            <div class="form-group">
+               <select name="ms" class="form-control" id="ms">
+                <option value="00">Select status</option>
+                <option selected value="none">none</option>
+               <option value="Single">Single</option>
+                 <option value="Married">Married</option>
+                  <option value="Widow">Widow</option>
+                    <option value="Divorsed">Divorsed</option>
+               </select>
+
+            </div>
+                         <label>
+              Relegion
+            </label>
+            <div class="form-group">
+             <select name="re" class="form-control" id="re">
+                <option value="00">Select Relegion</option>
+                 <option selected value="none">none</option>
+               <option value="Muslim">Muslim</option>
+               <option value="Hindu">Hindu</option>
+               <option value="Christian">Christian</option>
+               <option value="Sikh">Sikh</option>
+               <option value="Jains">Jains</option>
+             </select>
+            </div>
+                        <label>Caste</label>
+                        <div form="form-group">
+                            <input type="text" class="form-control" name="caste">
+                        </div>
+                              <label>
+               Country
+            </label>
+            <div class="form-group">
+            <select name="cnt" class="form-control" id="cnt">
+      <option value="00">Select Country</option>
+      <option selected value="India">INDIA</option>
+    </select>
+            </div>
+                 <label>
+               State
+            </label>
+            <div class="form-group">
+            <select name="st" class="form-control" id="st">
+      <option value="00">Select State</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <option value="Madhya Pradesh">Madhya Pradesh</option>
+      <option value="Rajasthan">Rajasthan</option>
+      <option value="Karnataka">Karnataka</option>
+      <option value=Gujarat">Gujarat</option>
+      <option value="Orissa">Orissa</option>
+      <option selected value="Kerala">Kerala</option>
+      <option value="Jharkhand">Jharkhand</option>
+      <option value="Assam">Assam</option>
+      <option value="Punjab">Punjab</option>
+      <option value="Haryana">Haryana</option>
+      <option value="Chhattisgarh">Chhattisgarh</option>
+      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+      <option value="Uttarakhand">Uttarakhand</option>
+      <option value="Himachal Pradesh">Himachal Pradesh</option>
+      <option value="Tripura">Tripura</option>
+      <option value="Meghalaya">Meghalaya</option>
+      <option value="Manipur">Manipur</option>
+      <option value="Nagaland">Nagaland</option>
+      <option value="Goa">Goa</option>
+      <option value="Mizoram">Mizoram</option>
+      <option value="Sikkim">Sikkim</option>
+            </select>
+
+            </div>
+               <label>District</label>
+                  <div class="form-group" >
+                      <input type="text" class="form-control" name="district">
+                  </div>
+                    </div>
+    <div class="tab-pane" id="board-info">
+                  <div class="form-group">
+                    <label>Admission Number</label>
+                    <input type="text" class="form-control" placeholder="Admission number " name="username" id="id_username" required />
+                  </div>
+                  <label>Qualification</label>
+                   <div class="form-group">
+                       <textarea name="Qualification" class="form-control"></textarea>
+                   </div>
+                   <labe>upload profile picture</labe>
+                   <div class="form-group">
+                       <input type="file" class="form-control" name="profile_pic">
+                   </div>
+                  <input type="submit" name="submit" value="Add Staff" class="btn btn-primary float-right btn-dark mr-3" id="submit-id-submit">
+
+                </div>
+                <!-- /.card-body -->
+
+                </div>
+                </div>
+                               </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+</div>
+
+
+
+
+{% endblock main_content %}

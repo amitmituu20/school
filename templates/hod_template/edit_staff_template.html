@@ -1,0 +1,273 @@
+{% extends 'hod_template/base_template.html' %}
+{% load static %}
+{% block page_title %}
+Edit Staff  | Username : {{ staff.admin.username }} | Full Name : {{ staff.admin.first_name }}
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+ <section class="content">
+      <div class="container-fluid"><div class="row">
+       <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                  <div class="card-header">
+                      <h3 class="card-title">Edit Staff</h3>
+                    <div class="card-tools">
+
+                 <a href="#" class="btn btn-tool">Print</a>
+                  <a href="{% url 'manage_staff' %}" class="btn btn-tool">
+                 <i class="fas fa-times"></i>
+                   </a>
+                   </div>
+                   </div> <div class="row mb-4">
+      <div class="col-sm-4">
+        <div class="row mb-2">
+
+         <img class="float-left rounded-circle mr-3" style="width: 120px; height: 120px;">
+
+            <img
+              src="{{ staff.profile_pic }} "
+              class="float-left rounded-circle mr-3" style="width: 120px; height: 120px;">
+
+               <input type="file" >
+
+                  <!-- form start -->
+                 </div>
+
+
+                 <div class="float-right">
+1
+                  <form role="form" action="/edit_staff_save" method="post">
+          </div>
+
+
+      </div>
+    <form role="form" action="/edit_staff_save" method="post">
+      <div class="col-sm-8">
+        <div>
+          <div class="form-group border-bottom row">
+            <label class="col">
+               Full Name
+            </label>
+            <div class="col">
+            {{ staff.admin.first_name }}
+            </div>
+          </div>
+             <div class="form-group border-bottom row">
+            <label class="col">
+               Username
+            </label>
+            <div class="col">
+            {{ staff.admin.username }}
+            </div>
+          </div>
+            <div class="form-group border-bottom row">
+            <label class="col">
+               Birth Date:
+            </label>
+            <div class="col">
+            {{ staff.sbdate }}
+            </div>
+          </div>
+
+
+            <label class="col">
+              Mobile Number
+            </label>
+            <div class="form-group">
+            <input type="text" value="SAM" readonly="readonly" />
+            </div>
+
+             <div class="form-group border-bottom row">
+            <label class="col">
+              Adhar number
+            </label>
+            <div class="col">
+            <input type="text" value="SAM" readonly="readonly" />
+            </div>
+          </div>
+             <div class="form-group border-bottom row">
+            <label>
+              email
+            </label>
+            <div class="form-group">
+            <input type="email" placeholder="email"  class="form-control" name="email" />
+            </div>
+          </div>
+            <div class="form-group border-bottom row">
+            <label>
+              Mother Tounge
+            </label>
+            <div class="form-group">
+              <select name="mt"  class="form-control" id="mt">
+                <option value="00">Select Mother Tounge</option>
+                <option value="Malayalam">Malayalam</option>
+                 <option value="Hindi">Hindi</option>
+                   <option value="Bengali">Bengali</option>
+                   <option value="Tamil">Tamil</option>
+                   <option value="Kannada">Kannada</option>
+                   <option value="Telugu">Telugu</option>
+                   <option value="Urdu">Urdu </option>
+
+                 </select>
+            </div>
+          </div>
+             <div class="form-group border-bottom row">
+            <label >
+              Gender
+            </label>
+            <div class="form-group">
+                 <select name="gd" id="gd">
+                <option value="00">Select gender</option>
+               <option value="Male">Male</option>
+                 <option value="Female">Female</option>
+                 <option value="Others">others</option>
+                 </select>
+            </div>
+          <
+          <div class="form-group border-bottom row">
+            <label class="col">
+              Address
+            </label>
+            <div class="col">
+            {{ staff.address }}
+            </div>
+          </div>
+               <div class="form-group border-bottom row">
+            <label>
+              Relegion
+            </label>
+            <div class="form-group">
+             <select name="re" class="form-control" id="re">
+                <option value="00">Select Relegion</option>
+               <option value="Muslim">Muslim</option>
+               <option value="Hindu">Hindu</option>
+               <option value="Christian">Christian</option>
+               <option value="Sikh">Sikh</option>
+               <option value="Jains">Jains</option>
+             </select>
+            </div>
+          </div>
+                 <div class="form-group border-bottom row">
+            <label class="col">
+              Caste
+            </label>
+            <div class="col">
+            <input type="text" value="SAM" readonly="readonly" />
+            </div>
+          </div>
+                 <div class="form-group border-bottom row">
+            <label >
+              Blood Group
+            </label>
+            <div class="form-group">
+           <select name="bd"  class="form-control" id="bd">
+                <option value="00">Select State</option>
+               <option value="O+">O+</option>
+                 <option value="O-">O-</option>
+                <option value="A+">A+</option>
+                 <option value="A-">A-</option>
+             <option value="B+">B+</option>
+               <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                 <option value="AB-">AB-</option>
+           </select>
+            </div>
+          </div>
+                 <div class="form-group border-bottom row">
+            <label class="col">
+               Qualification
+            </label>
+            <div class="col">
+            <input type="text" value="SAM" readonly="readonly" />
+            </div>
+          </div>
+                  <div class="form-group border-bottom row">
+            <label>
+               Marital status
+            </label>
+            <div class="form-group">
+               <select name="ms" class="form-control" id="ms">
+                <option value="00">Select status</option>
+               <option value="Single">Single</option>
+                 <option value="Married">Married</option>
+                  <option value="Widow">Widow</option>
+                    <option value="Divorsed">Divorsed</option>
+               </select>
+
+            </div>
+          </div>
+
+            <div class="form-group border-bottom row">
+            <label>
+               State
+            </label>
+            <div class="form-group">
+            <select name="st" class="form-control" id="st">
+      <option value="00">Select State</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <option value="Madhya Pradesh">Madhya Pradesh</option>
+      <option value="Rajasthan">Rajasthan</option>
+      <option value="Karnataka">Karnataka</option>
+      <option value=Gujarat">Gujarat</option>
+      <option value="Orissa">Orissa</option>
+      <option value="Kerala">Kerala</option>
+      <option value="Jharkhand">Jharkhand</option>
+      <option value="Assam">Assam</option>
+      <option value="Punjab">Punjab</option>
+      <option value="Haryana">Haryana</option>
+      <option value="Chhattisgarh">Chhattisgarh</option>
+      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+      <option value="Uttarakhand">Uttarakhand</option>
+      <option value="Himachal Pradesh">Himachal Pradesh</option>
+      <option value="Tripura">Tripura</option>
+      <option value="Meghalaya">Meghalaya</option>
+      <option value="Manipur">Manipur</option>
+      <option value="Nagaland">Nagaland</option>
+      <option value="Goa">Goa</option>
+      <option value="Mizoram">Mizoram</option>
+      <option value="Sikkim">Sikkim</option>
+            </select>
+
+            </div>
+          </div>
+    <div class="form-group border-bottom row">
+            <label>
+               Country
+            </label>
+            <div class="form-group">
+            <select name="cnt" class="form-control" id="cnt">
+      <option value="00">Select Country</option>
+      <option value="01">INDIA</option>
+    </select>
+            </div>
+          </div>
+                    <div class="form-group border-bottom row">
+            <label class="col">
+                Subjects taken
+            </label>
+            <div class="col">
+            <input type="text" value="SAM" readonly="readonly" />
+            </div>
+          </div>
+                     <div class="form-group border-bottom row">
+            <label class="col">
+                Classes taken
+            </label>
+            <div class="col">
+            <input type="text" value="SAM" readonly="readonly" />
+            </div>
+          </div>
+             <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Save Staff</button>
+                </div>
+              </form>
+        </div>
+      </div>
+       </div>
+       </div>
+       </div>
+      </div>
+ </section>
+{% endblock main_content %}

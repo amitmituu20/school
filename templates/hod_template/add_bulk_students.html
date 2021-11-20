@@ -1,0 +1,20 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Add Student from csv file
+{% endblock page_title %}
+
+
+
+{% block main_content %}
+
+  <div class="col alert alert-info">
+    <h5></h5>
+    <p>Please <a >upload the CSV file &</a>click submit</p>
+  </div>
+   <form role="form" action="/add_bulk_student_save" method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <input type="file" name="file">
+    <input type="submit" class="btn btn-success" value="Submit">
+  </form>
+
+{% endblock main_content %}
